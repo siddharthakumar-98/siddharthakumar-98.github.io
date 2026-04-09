@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siddhartha Kumar — Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f5f2ec;
+      --ink: #1a1612;
+      --ink-light: #5a544c;
+      --accent: #c45c2e;
+      --accent-light: #e8cfc0;
+      --rule: #d8d0c4;
+      --card-bg: #fffdf9;
+      --mono: 'DM Mono', monospace;
+      --serif: 'DM Serif Display', serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 52px;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    #hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.4rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-bio {
+      color: var(--ink-light);
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 540px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      padding: 0.35rem 0.9rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .pill-outline {
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      background: transparent;
+    }
+    .pill-outline:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .pill-fill {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+    .pill-fill:hover {
+      background: #a84a22;
+    }
+
+    .hero-avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 2px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      border: 1px solid var(--rule);
+    }
+
+    /* ─── LAYOUT ──────────────────────────────────────── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    section {
+      margin-top: 5rem;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.6s forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-label h2 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      color: var(--ink);
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ─── EXPERIENCE CARDS ────────────────────────────── */
+    .exp-list { display: flex; flex-direction: column; gap: 2px; }
+
+    .exp-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      padding: 1.6rem 2rem;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .exp-card:hover { border-color: var(--accent); }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .exp-card:hover::before { opacity: 1; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-role {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-light);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      padding-top: 3px;
+    }
+
+    .exp-company {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .exp-bullets li {
+      padding-left: 1.2rem;
+      position: relative;
+      color: var(--ink-light);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rule);
+      font-size: 12px;
+      top: 2px;
+    }
+
+    /* ─── SKILLS GRID ─────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2px;
+    }
+
+    .skill-block {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      padding: 1.4rem 1.6rem;
+    }
+
+    .skill-category {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      padding: 0.2rem 0.55rem;
+      background: var(--accent-light);
+      color: var(--ink);
+      border-radius: 2px;
+    }
+
+    /* ─── EDUCATION ───────────────────────────────────── */
+    .edu-list { display: flex; flex-direction: column; gap: 2px; }
+
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      padding: 1.4rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .edu-degree {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-school {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-light);
+      white-space: nowrap;
+    }
+
+    /* ─── CERTIFICATIONS ──────────────────────────────── */
+    .cert-list { display: flex; flex-direction: column; gap: 2px; }
+
+    .cert-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cert-name {
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .cert-issuer {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-light);
+      white-space: nowrap;
+    }
+
+    /* ─── STATS BAR ───────────────────────────────────── */
+    .stats-bar {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 4rem;
+    }
+
+    .stat-item {
+      flex: 1;
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      padding: 1.2rem 1.6rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--accent);
+      display: block;
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-light);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1rem; }
+      #hero { grid-template-columns: 1fr; padding: 3rem 1.2rem 2rem; }
+      .hero-avatar { display: none; }
+      main { padding: 0 1.2rem 4rem; }
+      .edu-card, .cert-card { flex-direction: column; align-items: flex-start; }
+      .stats-bar { flex-wrap: wrap; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">SK</a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certs</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div id="hero">
+    <div>
+      <p class="hero-eyebrow">Data Analyst · Burlington, VT</p>
+      <h1>Siddhartha<br /><em>Kumar</em></h1>
+      <p class="hero-bio">
+        Results-driven Data Analyst with 4+ years of experience delivering end-to-end analytics solutions across healthcare, finance, and marketing. I bridge the gap between technical teams and executive stakeholders through statistical modeling, Python/SQL engineering, and compelling data storytelling.
+      </p>
+      <div class="hero-links">
+        <a class="pill pill-outline" href="mailto:siddhartha.kumar.sk.1998@gmail.com">✉ Email</a>
+        <a class="pill pill-outline" href="tel:+12013772170">📞 201-377-2170</a>
+        <a class="pill pill-fill" href="#experience">View Work ↓</a>
+      </div>
+    </div>
+    <div class="hero-avatar">SK</div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-num">4+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">95M+</span>
+        <span class="stat-label">Records Analyzed</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">18+</span>
+        <span class="stat-label">Data Sources Integrated</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Industries</span>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label">
+        <h2>Experience</h2>
+      </div>
+
+      <div class="exp-list">
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-role">Data Analyst</div>
+            <div class="exp-date">Dec 2024 – Present</div>
+          </div>
+          <div class="exp-company">OPTUM · New York City, NY (Remote)</div>
+          <ul class="exp-bullets">
+            <li>Led Agile Scrum delivery across biweekly sprint cycles with clinicians, care managers, and product owners — achieving 60% sprint success rates and cutting readmission reporting delays by 32%.</li>
+            <li>Conducted large-scale EDA on 95M+ Medicare claims and EHR records, uncovering readmission drivers and seasonal trends to improve analytical accuracy by 41%.</li>
+            <li>Applied regression analysis and hypothesis testing to evaluate care coordination effectiveness, contributing to a 19% reduction in 30-day readmission rates.</li>
+            <li>Mined patient demographics and utilization patterns to identify high-risk cohorts, improving early readmission risk detection accuracy by 26%.</li>
+            <li>Automated Python ETL scripts for Medicare dataset processing, reducing manual effort by 58% and cutting daily analytics workflows from 5 hours to 2 hours.</li>
+            <li>Built interactive Tableau dashboards presenting readmission KPIs and risk stratification insights, boosting executive decision-making speed by 38%.</li>
+            <li>Engineered SSIS ETL pipelines integrating 18+ data sources (claims, EHR, care management), improving data refresh reliability by 72% and reducing data latency by 44%.</li>
+            <li>Implemented AWS S3 as a centralized healthcare data lake, improving storage scalability by 62% and lowering infrastructure costs by 27%.</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-role">Data Engineer</div>
+            <div class="exp-date">Dec 2020 – Dec 2022</div>
+          </div>
+          <div class="exp-company">JPMORGAN CHASE · Dallas, TX</div>
+          <ul class="exp-bullets">
+            <li>Contributed across all SDLC phases — from requirements gathering to release — delivering 5 enterprise analytics releases on schedule and improving financial reporting accuracy by 35%.</li>
+            <li>Performed hypothesis-driven analysis on revenue, expense, and variance datasets, identifying anomalies and reducing reporting discrepancies by 22% annually.</li>
+            <li>Cleaned and standardized 12M+ financial records, resolving duplicates, missing values, and inconsistencies to improve dataset reliability by 46%.</li>
+            <li>Optimized complex SQL queries with CTEs, joins, and window functions, reducing query execution time by 36% for near-real-time reporting.</li>
+            <li>Designed Power BI dashboards showcasing revenue trends, cost drivers, and profitability KPIs, improving executive visibility by 40%.</li>
+            <li>Maintained enterprise financial datasets in MySQL, optimizing schema design and indexing to improve data retrieval performance by 31%.</li>
+            <li>Enforced SOX-compliant data governance through access controls, validation checks, and audit trails, achieving a 60% audit pass rate.</li>
+            <li>Applied SAS for advanced statistical analysis and financial variance modeling, improving forecasting accuracy by 28%.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label">
+        <h2>Technical Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-block">
+          <div class="skill-category">Languages</div>
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">R</span>
+            <span class="tag">C</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-category">Libraries & Packages</div>
+          <div class="skill-tags">
+            <span class="tag">Pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">SciPy</span>
+            <span class="tag">Seaborn</span>
+            <span class="tag">dplyr</span>
+            <span class="tag">ggplot2</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-category">Visualization & BI</div>
+          <div class="skill-tags">
+            <span class="tag">Tableau</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">Looker</span>
+            <span class="tag">Excel (VBA, Power Query)</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-category">Databases</div>
+          <div class="skill-tags">
+            <span class="tag">MySQL</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Oracle</span>
+            <span class="tag">Snowflake</span>
+            <span class="tag">MongoDB</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-category">Cloud & Data Infra</div>
+          <div class="skill-tags">
+            <span class="tag">AWS S3</span>
+            <span class="tag">AWS Glue</span>
+            <span class="tag">Redshift</span>
+            <span class="tag">Lambda</span>
+            <span class="tag">Athena</span>
+            <span class="tag">Azure</span>
+            <span class="tag">Airflow</span>
+            <span class="tag">dbt</span>
+            <span class="tag">SSIS</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-category">Analytics Methods</div>
+          <div class="skill-tags">
+            <span class="tag">EDA</span>
+            <span class="tag">Regression</span>
+            <span class="tag">Hypothesis Testing</span>
+            <span class="tag">ANOVA</span>
+            <span class="tag">A/B Testing</span>
+            <span class="tag">Cohort Analysis</span>
+            <span class="tag">Funnel Analysis</span>
+            <span class="tag">Data Mining</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-category">Governance & Compliance</div>
+          <div class="skill-tags">
+            <span class="tag">HIPAA</span>
+            <span class="tag">SOX</span>
+            <span class="tag">GDPR</span>
+            <span class="tag">Data Governance</span>
+            <span class="tag">Audit Controls</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-category">Tools & Workflow</div>
+          <div class="skill-tags">
+            <span class="tag">JIRA</span>
+            <span class="tag">Confluence</span>
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">Jupyter</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">Agile/Scrum</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-label">
+        <h2>Education</h2>
+      </div>
+      <div class="edu-list">
+        <div class="edu-card">
+          <div>
+            <div class="edu-degree">M.S. in Computer Science</div>
+            <div class="edu-school">University of Vermont · Burlington, VT</div>
+          </div>
+          <div class="edu-year">Jan 2023 – Dec 2024</div>
+        </div>
+        <div class="edu-card">
+          <div>
+            <div class="edu-degree">B.Sc. in Computer Engineering</div>
+            <div class="edu-school">Purdue University · West Lafayette, IN</div>
+          </div>
+          <div class="edu-year">Aug 2016 – May 2021</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <div class="section-label">
+        <h2>Certifications</h2>
+      </div>
+      <div class="cert-list">
+        <div class="cert-card">
+          <div class="cert-name">Blockchain Specialization</div>
+          <div class="cert-issuer">Coursera · Apr 2022</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Analyze Datasets and Train ML Models using AutoML</div>
+          <div class="cert-issuer">AWS / Coursera · May 2022</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Siddhartha Kumar Senthil Kumar &nbsp;·&nbsp; Burlington, VT</p>
+    <p><a href="mailto:siddhartha.kumar.sk.1998@gmail.com">siddhartha.kumar.sk.1998@gmail.com</a></p>
+  </footer>
+
+</body>
+</html>
